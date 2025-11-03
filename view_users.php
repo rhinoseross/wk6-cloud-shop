@@ -20,7 +20,7 @@ if (!$conn) {
 
 // Fetch users from the database
 <<<<<<< HEAD
-$sql = "SELECT id, username, email FROM users";
+$sql = "SELECT * FROM shopusers";
 $result = sqlsrv_query($conn, $sql);
 
 if ($result === false) {
