@@ -28,18 +28,29 @@
       font-size: 1.2em;
       color: #555;
     }
-    .signup-link {
+    .button-container {
+      margin-top: 20px;
+    }
+    .btn {
       display: inline-block;
-      background-color: #007bff;
       color: white;
       padding: 12px 30px;
       text-decoration: none;
       border-radius: 4px;
       font-size: 18px;
-      margin-top: 20px;
+      margin: 0 10px;
     }
-    .signup-link:hover {
+    .btn-primary {
+      background-color: #007bff;
+    }
+    .btn-primary:hover {
       background-color: #0056b3;
+    }
+    .btn-secondary {
+      background-color: #6c757d;
+    }
+    .btn-secondary:hover {
+      background-color: #545b62;
     }
   </style>
 </head>
@@ -56,8 +67,10 @@
       <h2>Welcome to MyShop</h2>
       <p>Join our community today to access exclusive deals and features!</p>
 
-      <!-- Simple link to signup page -->
-      <a href="register.php" class="signup-link">Create Your Account</a>
+      <div class="button-container">
+        <a href="register.php" class="btn btn-primary">Create Your Account</a>
+        <a href="view_users.php" class="btn btn-secondary">View Users</a>
+      </div>
     </div>
   </div>
 </body>
