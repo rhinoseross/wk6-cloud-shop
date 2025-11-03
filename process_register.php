@@ -1,10 +1,11 @@
 <?php
 // Simple database connection
-$serverName = "tcp:mycardiffmet.database.windows.net,1433";
+$serverName = "tcp:wk6-sql-server.database.windows.net,1433";
+
 $connectionOptions = array(
   "Database" => "myDatabase",
   "Uid" => "myadmin",
-  "PWD" => "Abcdefgh0!",
+  "PWD" => "1qaz2wsx!",
   "Encrypt" => 1,
   "TrustServerCertificate" => 0
 );
@@ -72,3 +73,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   exit();
 }
 ?>
+
