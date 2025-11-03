@@ -19,12 +19,17 @@ if (!$conn) {
 }
 
 // Fetch users from the database
+<<<<<<< HEAD
 $sql = "SELECT id, username, email FROM users";
 $result = sqlsrv_query($conn, $sql);
 
 if ($result === false) {
     die("Error in query: " . print_r(sqlsrv_errors(), true));
 }
+=======
+$sql = "SELECT * FROM shopusers";
+$result = $conn->query($sql);
+>>>>>>> b3b2d7766b50d9f9fe7df6a4d999ae2536bc0b46
 ?>
 
 <!DOCTYPE html>
@@ -119,5 +124,10 @@ if ($result === false) {
 </html>
 
 <?php
+<<<<<<< HEAD
 sqlsrv_close($conn);
 ?>
+=======
+$conn->close();
+?>
+>>>>>>> b3b2d7766b50d9f9fe7df6a4d999ae2536bc0b46
