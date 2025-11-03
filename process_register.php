@@ -5,7 +5,7 @@ $serverName = "tcp:wk6-sql-server.database.windows.net,1433";
 $connectionOptions = array(
   "Database" => "myDatabase",
   "Uid" => "myadmin",
-  "PWD" => "1qaz2wsx!",
+  "PWD" => "1Qaz2wsx!",
   "Encrypt" => 1,
   "TrustServerCertificate" => 0
 );
@@ -73,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   exit();
 }
 ?>
+
 
 
 
