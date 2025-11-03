@@ -1,21 +1,30 @@
 <?php
 // Database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "myshop";
+$serverName = "tcp:wk6-sql-server.database.windows.net,1433";
+
+$connectionOptions = array(
+    "Database" => "myDatabase",
+    "Uid" => "myadmin",
+    "PWD" => "1Qaz2wsx!",
+    "Encrypt" => 1,
+    "TrustServerCertificate" => 0
+);
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = sqlsrv_connect($serverName, $connectionOptions);
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . print_r(sqlsrv_errors(), true));
 }
 
 // Fetch users from the database
 $sql = "SELECT id, username, email FROM users";
-$result = $conn->query($sql);
+$result = sqlsrv_query($conn, $sql);
+
+if ($result === false) {
+    die("Error in query: " . print_r(sqlsrv_errors(), true));
+}
 ?>
 
 <!DOCTYPE html>
@@ -77,32 +86,38 @@ $result = $conn->query($sql);
     <div class="container">
         <a href="index.php" class="back-button">Back to Home</a>
         
-        <?php if ($result->num_rows > 0): ?>
-            <table class="users-table">
-                <thead>
+        <table class="users-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $hasRows = false;
+                while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)): 
+                    $hasRows = true;
+                ?>
                     <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Email</th>
+                        <td><?php echo htmlspecialchars($row['id']); ?></td>
+                        <td><?php echo htmlspecialchars($row['username']); ?></td>
+                        <td><?php echo htmlspecialchars($row['email']); ?></td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php while($row = $result->fetch_assoc()): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($row['id']); ?></td>
-                            <td><?php echo htmlspecialchars($row['username']); ?></td>
-                            <td><?php echo htmlspecialchars($row['email']); ?></td>
-                        </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
-        <?php else: ?>
-            <p>No users found in the database.</p>
-        <?php endif; ?>
+                <?php endwhile; ?>
+                
+                <?php if (!$hasRows): ?>
+                    <tr>
+                        <td colspan="3">No users found in the database.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
 
 <?php
-$conn->close();
+sqlsrv_close($conn);
 ?>
