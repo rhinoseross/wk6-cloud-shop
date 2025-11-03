@@ -1,9 +1,9 @@
 <?php
 // Database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "myshop";
+$servername = "tcp:wk6-sql-server.database.windows.net,1433";
+$username = "myadmin";
+$password = "1Qaz2wsx!";
+$dbname = "myDatabase";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // Fetch users from the database
-$sql = "SELECT id, username, email FROM users";
+$sql = "SELECT * FROM shopusers";
 $result = $conn->query($sql);
 ?>
 
