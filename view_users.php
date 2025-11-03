@@ -1,8 +1,4 @@
 <?php
-/*
-Original view_users.php content (commented out by request).
-
-<?php
 // Database connection
 $serverName = "tcp:wk6-sql-server.database.windows.net,1433";
 
@@ -125,30 +121,3 @@ if ($result === false) {
 <?php
 sqlsrv_close($conn);
 ?>
-
-*/
-
-// Minimal test page served while view_users.php is disabled
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>View Users - Test</title>
-  <style>
-    body { font-family: Arial, Helvetica, sans-serif; padding: 40px; color: #333; }
-    .card { max-width: 800px; margin: 0 auto; border: 1px solid #e0e0e0; padding: 24px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
-    a { color: #007bff; text-decoration: none; }
-  </style>
-</head>
-<body>
-  <div class="card">
-    <h1>View Users — Test Page</h1>
-    <p>The original <code>view_users.php</code> file has been temporarily disabled and preserved inside this file as a comment.</p>
-    <p>This is a basic test page to confirm the route is reachable. If you want the original functionality re-enabled, I can restore it or move it to a backup file.</p>
-    <p><a href="index.php">Back to Home</a></p>
-  </div>
-</body>
-</html>
