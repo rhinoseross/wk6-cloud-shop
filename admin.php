@@ -1,9 +1,14 @@
 <?php
 session_start();
 
-// Require login
+// Require login and admin flag
 if (!isset($_SESSION['user']) || empty($_SESSION['user']['email'])) {
   header('Location: login.php');
+  exit();
+}
+if (empty($_SESSION['user']['is_admin'])) {
+  // Not an admin
+  header('Location: index.php');
   exit();
 }
 ?>

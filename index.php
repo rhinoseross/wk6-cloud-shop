@@ -85,9 +85,13 @@ session_start();
         <a href="register.php" class="btn btn-primary">Create Your Account</a>
         <a href="randomusers.php" class="btn btn-primary">Create Users</a>
         <?php if (isset($_SESSION['user'])): ?>
-          <a href="admin.php" class="btn btn-primary">Admin</a>
+          <?php if (!empty($_SESSION['user']['is_admin'])): ?>
+            <a href="admin.php" class="btn btn-primary">Admin</a>
+          <?php endif; ?>
+          <a href="logout.php" class="btn btn-secondary">Logout</a>
+        <?php else: ?>
+          <a href="login.php" class="btn btn-primary">Login</a>
         <?php endif; ?>
-        <a href="login.php" class="btn btn-primary">Login</a>
         <a href="./view_users.php" class="btn btn-secondary">View Users</a>
       </div>
     </div>

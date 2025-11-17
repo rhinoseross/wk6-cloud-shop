@@ -1,9 +1,13 @@
 <?php
 session_start();
 
-// require login
+// require login and admin
 if (!isset($_SESSION['user']) || empty($_SESSION['user']['email'])) {
   header('Location: login.php');
+  exit();
+}
+if (empty($_SESSION['user']['is_admin'])) {
+  header('Location: index.php');
   exit();
 }
 
@@ -23,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   exit();
 }
 
+// Collect and validate inputs
 $name = isset($_POST['name']) ? trim($_POST['name']) : '';
 $description = isset($_POST['description']) ? trim($_POST['description']) : '';
 $price = isset($_POST['price']) ? $_POST['price'] : '';
@@ -30,6 +35,21 @@ $quantity = isset($_POST['quantity']) ? $_POST['quantity'] : '';
 
 if ($name === '' || $price === '' || $quantity === '') {
   header('Location: admin.php?error=' . urlencode('Please fill required fields'));
+  exit();
+}
+
+if (strlen($name) > 255) {
+  header('Location: admin.php?error=' . urlencode('Product name too long'));
+  exit();
+}
+
+if (!is_numeric($price) || floatval($price) <= 0) {
+  header('Location: admin.php?error=' . urlencode('Price must be a positive number'));
+  exit();
+}
+
+if (!is_numeric($quantity) || intval($quantity) < 0) {
+  header('Location: admin.php?error=' . urlencode('Quantity must be a non-negative integer'));
   exit();
 }
 

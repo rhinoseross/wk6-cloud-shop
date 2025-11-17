@@ -2,7 +2,7 @@
 session_start();
 
 // Azure SQL connection settings (match process_register.php)
-$serverName = "tcp:wk6-sql-server.database.windows.net,1433";
+$serverName = "tcp:wk8-database-replica.database.windows.net,1433";
 
 $connectionOptions = array(
   "Database" => "myDatabase",
@@ -36,7 +36,7 @@ if (!$conn) {
   exit();
 }
 
-$sql = "SELECT id, name, email, password FROM shopusers WHERE email = ?";
+$sql = "SELECT id, name, email, password, is_admin FROM shopusers WHERE email = ?";
 $params = array($email);
 $stmt = sqlsrv_query($conn, $sql, $params);
 if ($stmt === false) {
@@ -65,6 +65,8 @@ $_SESSION['user'] = array(
   'name' => $row['name'],
   'email' => $row['email']
 );
+// store admin flag (if column exists)
+$_SESSION['user']['is_admin'] = isset($row['is_admin']) ? (int)$row['is_admin'] : 0;
 
 sqlsrv_free_stmt($stmt);
 sqlsrv_close($conn);
