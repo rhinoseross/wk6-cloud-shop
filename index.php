@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +7,6 @@ session_start();
   <link rel="stylesheet" href="styles.css">
   <style>
     .header {
-      position: relative;
       background-color: #2c3e50;
       color: white;
       padding: 20px 0;
@@ -56,13 +52,6 @@ session_start();
     .btn-secondary:hover {
       background-color: #545b62;
     }
-    .user-info {
-      position: absolute;
-      right: 20px;
-      top: 18px;
-      color: #fff;
-      font-weight: 600;
-    }
   </style>
 </head>
 <body>
@@ -70,9 +59,10 @@ session_start();
     <div class="container">
       <h1>MyShop</h1>
       <p>Your one-stop destination for amazing products</p>
-      <?php if (isset($_SESSION['user']) && !empty($_SESSION['user']['name'])): ?>
-        <div class="user-info">Hello, <?php echo htmlspecialchars($_SESSION['user']['name']); ?><?php echo (!empty($_SESSION['user']['is_admin']) ? ' (Admin)' : ''); ?></div>
-      <?php endif; ?>
+<<<<<<< HEAD
+      
+=======
+>>>>>>> parent of 2b0a083 (Add admin stock form and process_stock; show Admin link when logged in)
     </div>
   </div>
 
@@ -84,14 +74,11 @@ session_start();
       <div class="button-container">
         <a href="register.php" class="btn btn-primary">Create Your Account</a>
         <a href="randomusers.php" class="btn btn-primary">Create Users</a>
-        <?php if (isset($_SESSION['user'])): ?>
-          <?php if (!empty($_SESSION['user']['is_admin'])): ?>
-            <a href="admin.php" class="btn btn-primary">Admin</a>
-          <?php endif; ?>
-          <a href="logout.php" class="btn btn-secondary">Logout</a>
-        <?php else: ?>
-          <a href="login.php" class="btn btn-primary">Login</a>
-        <?php endif; ?>
+<<<<<<< HEAD
+        <a href="login.php" class="btn btn-primary">Login</a>
+=======
+        <a href="login.php" class="btn btn-primary">Login</a>
+>>>>>>> parent of 2b0a083 (Add admin stock form and process_stock; show Admin link when logged in)
         <a href="./view_users.php" class="btn btn-secondary">View Users</a>
       </div>
     </div>
