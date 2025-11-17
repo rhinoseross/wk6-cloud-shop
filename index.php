@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +10,7 @@
   <link rel="stylesheet" href="styles.css">
   <style>
     .header {
+      position: relative;
       background-color: #2c3e50;
       color: white;
       padding: 20px 0;
@@ -52,6 +56,13 @@
     .btn-secondary:hover {
       background-color: #545b62;
     }
+    .user-info {
+      position: absolute;
+      right: 20px;
+      top: 18px;
+      color: #fff;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
@@ -59,6 +70,9 @@
     <div class="container">
       <h1>MyShop</h1>
       <p>Your one-stop destination for amazing products</p>
+      <?php if (isset($_SESSION['user']) && !empty($_SESSION['user']['name'])): ?>
+        <div class="user-info">Hello, <?php echo htmlspecialchars($_SESSION['user']['name']); ?></div>
+      <?php endif; ?>
     </div>
   </div>
 
@@ -70,6 +84,9 @@
       <div class="button-container">
         <a href="register.php" class="btn btn-primary">Create Your Account</a>
         <a href="randomusers.php" class="btn btn-primary">Create Users</a>
+        <?php if (isset($_SESSION['user'])): ?>
+          <a href="admin.php" class="btn btn-primary">Admin</a>
+        <?php endif; ?>
         <a href="login.php" class="btn btn-primary">Login</a>
         <a href="./view_users.php" class="btn btn-secondary">View Users</a>
       </div>
