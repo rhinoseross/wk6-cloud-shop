@@ -1,5 +1,6 @@
 <?php
 session_start();
+if (empty($_SESSION['csrf_token'])) { $_SESSION['csrf_token'] = bin2hex(random_bytes(24)); }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +26,7 @@ session_start();
     <?php endif; ?>
 
     <form action="process_login.php" method="post">
+      <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" required>

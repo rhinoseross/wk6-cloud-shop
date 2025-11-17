@@ -71,7 +71,7 @@ session_start();
       <h1>MyShop</h1>
       <p>Your one-stop destination for amazing products</p>
       <?php if (isset($_SESSION['user']) && !empty($_SESSION['user']['name'])): ?>
-        <div class="user-info">Hello, <?php echo htmlspecialchars($_SESSION['user']['name']); ?></div>
+        <div class="user-info">Hello, <?php echo htmlspecialchars($_SESSION['user']['name']); ?><?php echo (!empty($_SESSION['user']['is_admin']) ? ' (Admin)' : ''); ?></div>
       <?php endif; ?>
     </div>
   </div>

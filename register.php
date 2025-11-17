@@ -79,6 +79,12 @@
     <p>Create Your Account</p>
   </div>
 
+  <?php
+  session_start();
+  if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(24));
+  }
+  ?>
   <div class="register-form">
     <h2>Register</h2>
 
@@ -91,6 +97,7 @@
 
     <!-- Form submits to process_register.php -->
     <form method="post" action="process_register.php">
+      <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
       <div class="form-group">
         <label>Full Name *</label>
         <input type="text" name="name" placeholder="Enter your full name" required>

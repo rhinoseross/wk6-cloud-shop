@@ -51,6 +51,7 @@ if (empty($_SESSION['user']['is_admin'])) {
       <?php endif; ?>
 
       <form action="process_stock.php" method="post">
+        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
         <label for="name">Product Name</label>
         <input type="text" id="name" name="name" required>
 

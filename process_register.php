@@ -1,4 +1,13 @@
+$php_start = "";
 <?php
+session_start();
+// CSRF check
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  if (empty($_POST['csrf_token']) || empty($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+    header('Location: register.php?error=' . urlencode('Invalid CSRF token'));
+    exit();
+  }
+}
 // Simple database connection
 $serverName = "tcp:wk6-sql-server.database.windows.net,1433";
 

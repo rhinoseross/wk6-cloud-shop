@@ -27,6 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   exit();
 }
 
+// CSRF check
+if (empty($_POST['csrf_token']) || empty($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+  header('Location: admin.php?error=' . urlencode('Invalid CSRF token'));
+  exit();
+}
+
 // Collect and validate inputs
 $name = isset($_POST['name']) ? trim($_POST['name']) : '';
 $description = isset($_POST['description']) ? trim($_POST['description']) : '';
