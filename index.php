@@ -70,6 +70,7 @@
       <div class="button-container">
         <a href="register.php" class="btn btn-primary">Create Your Account</a>
         <a href="randomusers.php" class="btn btn-primary">Create Users</a>
+        <a href="login.php" class="btn btn-primary">Login</a>
         <a href="./view_users.php" class="btn btn-secondary">View Users</a>
       </div>
     </div>
