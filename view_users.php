@@ -1,6 +1,6 @@
 <?php
 // Database connection
-$serverName = "tcp:wk6-sql-server.database.windows.net,1433";
+$serverName = "tcp:wk8-database-replica.database.windows.net,1433";
 
 $connectionOptions = array(
     "Database" => "myDatabase",
