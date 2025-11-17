@@ -1,0 +1,9 @@
+/.vs/
+*.user
+*.suo
+.DS_Store
+vendor/
+node_modules/
+/.idea/
+/.vscode/
+.env
